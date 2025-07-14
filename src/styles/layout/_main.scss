@@ -1,0 +1,161 @@
+@use '../abstracts/variables' as *;
+
+.main-body{
+    width: 76.5%;
+    height: 100vh;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-sizing: border-box;
+    /* Scrollbar styles */
+    &::-webkit-scrollbar {
+        width: 12px; /* Width of the scrollbar */
+    }
+
+    &::-webkit-scrollbar-track {
+        background: #f1f1f1; /* Background of the track (scroll area) */
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #888; /* Scrollbar thumb (the actual bar) */
+        border-radius: 10px; /* Roundness of the scrollbar */
+        border: 3px solid #f1f1f1; /* Padding around the thumb */
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background-color: #555; /* Darker color when hovering over the scrollbar */
+    }
+
+    .overlay{
+        width: 100%;
+        height: 100%;
+        
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        z-index: 20;
+        &.side-actions-active{
+            display: flex !important;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(2px) !important;
+           
+            
+        }
+    }
+    @media (max-width: $breakpoint-mobile) {
+        width: 100%;
+       
+    }
+
+     //Shop page
+    .shop{
+        width: 100%;
+        
+        box-sizing: border-box;
+        padding:0% 2%;
+        background-color: #EAEBEB;
+        font-family: "Montserrat", sans-serif;
+        h1{
+            color: $black;
+            text-transform: uppercase;
+            font-size: $base-font-size * 1.69;
+            text-align: center;
+           
+            margin-bottom: $base-font-size;
+        }
+        .card-container{
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: $padding-base * 1.52;
+            box-sizing: border-box;
+            flex-wrap: wrap;
+            .card{
+                width: 100%;
+                height: 450px;
+                padding: .5rem;
+                border: 1px solid rgba(0, 0, 0, 0.034);
+                box-sizing: border-box;
+                text-decoration: none;
+                transition: box-shadow .4s ease;
+                &:hover{
+                    transition: .4s ease;
+                    box-shadow: 0px 0px 13px 3px rgba(0, 0, 0, 0.068);
+                    .description p{
+                        text-decoration: underline;
+                        // color: $tertiary-color;
+                    }
+                    .card-image{
+                        overflow: hidden;
+                        
+                        img{
+                            transform: scale(1.05);
+                            transition: .6s ease;
+                           
+                        }
+                    }
+                }
+                .card-image{
+                    width: 100%;
+                    height: 70%;
+                    img{
+                        width: 100%;
+                        height: 100%;
+                        object-fit: contain;
+                        transition: transform 0.6s ease;
+                    }
+                }
+                .description{
+                    width: 100%;
+                    height: 30%;
+                    box-sizing: border-box;
+                    font-family: "Montserrat", sans-serif;
+                    color: $black;
+                    padding: .7rem 0;
+
+                    p{
+                        text-transform: uppercase;
+                        text-decoration-color: $black;
+                        font-weight: bold;
+                        font-size: $base-font-size * 1.03;
+                    }
+                    small{
+                        s{
+                            color: $tertiary-color;
+                        }
+                    }
+                }
+            }
+        }
+        p.info{
+            color: $tertiary-color;
+        }
+        @media (max-width: $breakpoint-mobile) {
+            h1{
+                font-size: $base-font-size * 1.5;
+                padding: 1rem 0;
+                text-align: center;
+            }
+            .card-container .card{
+                width: calc(100% / 2.1);
+                height: 280px;
+                .card-image{
+                    height: 70%;
+                }
+                .description{
+                    height: 30%;
+                    
+                    p{
+                        font-size: $base-font-size * .75;
+                        line-height: 1rem;
+                    }
+                    small{
+                        font-size: $base-font-size * .7;
+                    }
+                }
+            }
+        }
+    }
+   
+}
