@@ -5,11 +5,16 @@ nav.sidebar{
     height: 100%;
     display: flex;
     flex-direction: column;
-    padding: .5rem 2%;
+    padding: .5rem 3%;
     justify-content: space-between;
     font-family: "montserrat", sans-serif;
     box-sizing: border-box;
-    
+    position: relative;
+    transition: width .4s ease;
+    &.search-active{
+        transition: .4s ease;
+        width: 30%;
+    }
     .header {
         display: flex;
         flex-direction: column;
@@ -18,7 +23,8 @@ nav.sidebar{
         padding: $padding-base 0;
         gap: .5rem;
         box-sizing: border-box;
-       
+        min-height: 22%;
+        
         .top-action{
             width: 100%;
             display: flex;
@@ -26,10 +32,11 @@ nav.sidebar{
             justify-content: flex-end;
             padding: $padding-base 0;
             gap: $padding-base * 2;
-           
+            
             a.action-btn{
                 text-decoration: none;
                 color: $font-color;
+                transition: color .4s ease;
                 &.search{
                     display: none;
                 }
@@ -37,13 +44,13 @@ nav.sidebar{
                     display: none;
                 }
                 &:hover span{
-                    transform: scale(1.08);
+                    transition: .4s ease;
                     color: $white;
                 }
                 span{
                     color: $font-color;
                     transition: all .2s ease-in-out;
-                    font-size: $base-font-size * 2;
+                    font-size: $base-font-size * 2.2;
                 }
             }
         }
@@ -53,8 +60,8 @@ nav.sidebar{
             justify-content: center;
             
             img{
-                width: 80%;
-                
+                width: 100%;
+               
             }
             h3{
                 font-size: $base-font-size * 2;
@@ -65,15 +72,17 @@ nav.sidebar{
         }
     }
     .content{
-        min-height: 40%;
-        
+        min-height: 60%;
+       
         box-sizing: border-box;
         padding: $padding-base;
-
+        
         display: flex;
+        width: 100%;
         flex-direction: column;
-        justify-content: space-around;
+        justify-content: flex-end;
         gap: 2rem;
+        padding: 0;
         .close{
             display: none;
             
@@ -89,9 +98,10 @@ nav.sidebar{
                     color: $font-color;
                     text-decoration: none;
                     font-weight: 400;
-                    font-size: $base-font-size * 1.2;
+                    font-size: $base-font-size * 1.1;
                     text-transform: uppercase;
-                    transition: .1s all ease-in-out;
+                    transition: color .2s ease;
+                    letter-spacing: .03cm;
                 }
                 &:nth-child(1) a:hover{
                     color: $secondary-color;
@@ -125,18 +135,27 @@ nav.sidebar{
         align-items: center;
         position: relative;
         line-height: 1.8rem;
+        width: 100%;
+        min-height: 10%;
         
+        box-sizing: border-box;
+        position: relative;
+        transition: width .4s ease;
         input{
             background: transparent;
             padding: $padding-base * 1.2 0;
             border: none;
-            border-bottom: 2px solid $font-color;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.452);
             width: 100%;
             outline: none;
             color: $font-color;
+           
             &::placeholder{
                 color: $font-color;
                 font-family: "montserrat", sans-serif;
+            }
+            &:focus{
+                border-bottom: 2px solid $font-color
             }
         }
         input[type="search"]::-webkit-search-decoration,
@@ -145,16 +164,54 @@ nav.sidebar{
         input[type="search"]::-webkit-search-results-decoration {
             display: none;
         }
-
-        span,i.bx{
-            position: absolute;
-            right: 1%;
-            color: $font-color;
-            font-size: $base-font-size * 1.7;
-        }
         .search-close{
             display: none;
+            color: white;
+            font-size: $base-font-size * 1.7;
             
+            font-weight: 600;
+        }
+        button{
+            position: absolute;
+            right: 0%;
+            text-align: center;
+            background: transparent;
+            cursor: pointer;
+            padding: .2rem;
+            border: none;
+            
+            i.bx,span{
+                color: $font-color;
+                font-size: $base-font-size * 1.7;
+                transition: color .4s ease;
+            }
+            &:hover i.bx{
+                color: $white;
+                transition: .4s ease;
+            }
+        }
+
+        &.active{
+            position: absolute;
+            background: $bg-color;
+            z-index: 223;
+            height: 100%;
+            align-items: flex-start;
+            
+            transition: .4s ease;
+            left: 0;
+            top: 0;
+            padding: 1rem 2rem;
+            
+            .search-btn{
+                display: none;
+            }
+            .search-close{
+                display: flex;
+                margin-top: .2rem;
+                right: 1.5rem;
+                
+            }
         }
     }
 

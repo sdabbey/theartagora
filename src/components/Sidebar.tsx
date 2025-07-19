@@ -1,15 +1,25 @@
 import '@styles/main.scss';
 import logo from '../assets/images/logo1.png'
 export default function Sidebar(){
+
+    const expandSearch = () => {
+        document.getElementById("search-box")?.classList.add("active");
+        document.querySelector(".sidebar")?.classList.add("search-active");
+    }
+
+    const closeSearch = () => {
+        document.getElementById("search-box")?.classList.remove("active");
+        document.querySelector(".sidebar")?.classList.remove("search-active");
+    }
     return (
         <nav className="sidebar">
             <div className="header">
                 <div className="top-action">
-                    <a href="#" className="action-btn favorite">
+                    {/* <a href="#" className="action-btn favorite">
                         <span className="material-symbols-outlined">
                         favorite
                         </span>
-                    </a>
+                    </a> */}
                     <a href="#" className="action-btn search" id="search-trigger">
                         <span className="material-symbols-outlined">
                         search
@@ -55,14 +65,14 @@ export default function Sidebar(){
                 </ul>
             
             </div>
-            <form action="#" id="search-input">
-                <input type="search" placeholder="Search..." />
-                <i className='bx bx-search'></i>
-                <div className="search-close" id="search-closer">
+            <form action="#" id="search-box">
+                <input type="search" placeholder="Search..." onFocus={expandSearch} />
+                <button className="search-btn"><i className='bx bx-search'></i></button>
+                <button className="search-close" id="search-closer" onClick={closeSearch}>
                     <span className="material-symbols-outlined">
                         close
                     </span>
-                </div>
+                </button>
             </form>
         </nav>
     )
