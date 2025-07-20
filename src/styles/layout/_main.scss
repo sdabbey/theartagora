@@ -4,11 +4,14 @@
 .main-body{
     width: 76.5%;
     height: 100vh;
+    overflow-x: hidden;
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     position: relative;
     box-sizing: border-box;
+    padding: 0;
     /* Scrollbar styles */
     &::-webkit-scrollbar {
         width: 12px; /* Width of the scrollbar */
@@ -525,18 +528,24 @@
                                 font-size: $base-font-size * 1.1;
                             }
                         }
-                        .filled{
+                        .filled-container{
                             width: 70%;
                             background: #e6e9e9;
                             height: 8px;
                             border-radius: 5px;
+                            .filled{
+                                
+                                background: black;
+                                height: 100%;
+                                border-radius: 5px;
+                            }
                             
                         }
                         .reviews{
                             
                             justify-content: center;
                         }
-                        &:first-child .filled{
+                        &:first-child .filled-container .filled{
                             background: black;
                         }
                     }
@@ -689,6 +698,98 @@
                                 line-height :1.5rem ;
                             }
                             
+                        }
+                    }
+                }
+            }
+        }
+        .similar-products{
+            padding: 1rem 3.5rem;
+            .header{
+                display: flex;
+                align-items: center;
+                padding: 1.5rem 0;
+                justify-content: space-between;
+                h1{
+                    color: $black;
+                    text-transform: uppercase;
+                    font-size: 24px;
+                    text-align: center;
+                    font-weight: 600;
+                    margin-bottom: $base-font-size;
+                }
+                a{
+                    font-size: 14px;
+                    color: $black-accent;
+                    text-underline-offset: .1cm;
+                    transition: color .4s ease;
+                    &:hover{
+                        color: $tertiary-color;
+                        transition: .4s ease;
+                    }
+                }
+            }
+            .card-container{
+                width: 100%;
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: $padding-base * 1.52;
+                box-sizing: border-box;
+                flex-wrap: wrap;
+                .card{
+                    width: 100%;
+                    height: 350px;
+                    padding: 0rem;
+                    
+                    box-sizing: border-box;
+                    text-decoration: none;
+                    transition: box-shadow .4s ease;
+                    &:hover{
+                        transition: .4s ease;
+                        
+                        .description p{
+                            text-decoration: underline;
+                            // color: $tertiary-color;
+                        }
+                        .card-image{
+                            overflow: hidden;
+                            
+                            img{
+                                transform: scale(1.05);
+                                transition: .6s ease;
+                            
+                            }
+                        }
+                    }
+                    .card-image{
+                        width: 100%;
+                        height: 70%;
+                        background: #F0F0F0;
+                        img{
+                            width: 100%;
+                            height: 100%;
+                            object-fit: contain;
+                            transition: transform 0.6s ease;
+                        }
+                    }
+                    .description{
+                        width: 100%;
+                        height: 30%;
+                        box-sizing: border-box;
+                        font-family: "Montserrat", sans-serif;
+                        color: $black;
+                        padding: .7rem 0;
+
+                        p{
+                            text-transform: uppercase;
+                            text-decoration-color: $black;
+                            font-weight: bold;
+                            font-size: 15px;
+                        }
+                        small{
+                            s{
+                                color: $tertiary-color;
+                            }
                         }
                     }
                 }

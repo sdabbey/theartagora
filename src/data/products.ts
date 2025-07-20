@@ -19,6 +19,7 @@ export const products = [
         price: 55,
         oldPrice: 75,
         sizes: ["One Size"],
+        collection: "The Art Agora Signature Collection",
         details: [
             "Made in Ghana",
             "13oz Bull Denim",
@@ -37,6 +38,7 @@ export const products = [
         price: 55,
         oldPrice: 65,
         sizes: ["X-small", "Small", "Medium", "Large", "X-Large", "2X-Large"],
+        collection: "The Art Agora Signature Collection",
         details: [
             "100% U.S. Grown Cotton",
             "6.5oz Heavyweight Fabric",
@@ -55,6 +57,7 @@ export const products = [
         price: 55,
         oldPrice: 65,
         sizes: ["X-small", "Small", "Medium", "Large", "X-Large", "2X-Large"],
+        collection: "The Art Agora Signature Collection",
         details: [
             "100% U.S. Grown Cotton",
             "6.5oz Heavyweight Fabric",
@@ -68,11 +71,12 @@ export const products = [
     {
         id: 4,
         image: hoodie,
-        name: "The Art Agora Signature Hoodie 14oz Heavy Weight True Black",
+        name: "The Art Agora Signature Hoodie Heavy Weight True Black",
         description: "Fill it",
         price: 135,
         oldPrice: 150,
         sizes: ["X-small", "Small", "Medium", "Large", "X-Large", "2X-Large"],
+        collection: "The Art Agora Signature Collection",
         details: [
             "100% U.S. Grown Cotton",
             "Ash: 98% Cotton / 2% Polyester",
@@ -94,6 +98,7 @@ export const products = [
         price: 135,
         oldPrice: 150,
         sizes: ["X-small", "Small", "Medium", "Large", "X-Large", "2X-Large"],
+        collection: "The Art Agora Signature Collection",
         details: [
             "100% U.S. Grown Cotton",
             "Ash: 98% Cotton / 2% Polyester",
@@ -115,6 +120,7 @@ export const products = [
         price: 45,
         oldPrice: 55,
         sizes: ["Adult Large","Adult Medium", "Adult Small", "Child", "Toddler"],
+        collection: "The Art Agora Signature Collection",
         details: [
             "100% U.S. Grown Cotton",
             "Unisex",
@@ -136,6 +142,7 @@ export const products = [
         price: 65,
         oldPrice: 75,
         sizes: ["X-small", "Small", "Medium", "Large", "X-Large", "2X-Large"],
+        collection: "The Art Agora Signature Collection",
         details: [
             
            
@@ -152,6 +159,7 @@ export const products = [
         price: 45,
         oldPrice: 65,
         sizes: ["One Size"],
+        collection: "The Art Agora Signature Collection",
         details: [
             
            
@@ -168,6 +176,7 @@ export const products = [
         price: 65,
         oldPrice: 75,
         sizes: ["One Size"],
+        collection: "The Art Agora Signature Collection",
         details: [
             
            
@@ -184,6 +193,7 @@ export const products = [
         price: 75,
         oldPrice: 85,
         sizes: ["One Size"],
+        collection: "The Art Agora Signature Collection",
         details: [
             
            

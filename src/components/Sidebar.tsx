@@ -26,8 +26,15 @@ export default function Sidebar(){
                         </span>
                     </a>
                     <a href="#" className="action-btn">
-                        <span className="material-symbols-outlined">
+                        {/* <span className="material-symbols-outlined">
                             shopping_bag
+                            <small>0</small>
+                        </span> */}
+                        <span>
+                            <svg className="svg symbol symbol--cart low-dpi" width="24" height="28" viewBox="0 0 24 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7 7H4.85375C3.25513 7 1.93732 8.25356 1.85749 9.85019L1.15749 23.8502C1.07181 25.5637 2.43806 27 4.15375 27H19.8463C21.5619 27 22.9282 25.5637 22.8425 23.8502L22.1425 9.85019C22.0627 8.25356 20.7449 7 19.1463 7H17M7 7V5C7 2.79086 8.79086 1 11 1H13C15.2091 1 17 2.79086 17 5V7M7 7H17" stroke="white" stroke-width="2"></path>
+                            </svg>
+                            <small>0</small>
                         </span>
                     </a>
                     <a href="#" className="nav-trigger action-btn" id="nav-trigger">

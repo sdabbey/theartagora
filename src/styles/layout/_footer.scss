@@ -7,7 +7,10 @@ footer.footer{
         box-sizing: border-box;
         display: flex;
         flex-direction: column;
-      
+        margin: 0;
+        height: fit-content;
+        overflow: hidden;
+        
         .footer-content{
             width: 100%;
             height: fit-content;
