@@ -1,4 +1,5 @@
-import toteBag from '../../assets/images/apparels/tote bag.png'
+import { useParams } from 'react-router-dom';
+import { products } from '../../data/products';
 import { useEffect, useRef, useState } from "react";
 
 
@@ -8,7 +9,9 @@ export default function ProductDetail(){
     const imageRefs = useRef<Array<HTMLDivElement | null>>([]);
     const [activeIndex, setActiveIndex] = useState(0);
 
-    const images = [toteBag, toteBag, toteBag]; // Replace with your real image list
+    const { id } = useParams();
+    const product = products.find(p => p.id === Number(id));
+    const images = [product?.image, product?.image, product?.image]; // Replace with your real image list
 
     useEffect(() => {
         const options = {
@@ -107,7 +110,7 @@ export default function ProductDetail(){
                         </div>
                         <div className="product-info">
                             <small>The Art Agora Signature Collection</small>
-                            <h2>The Art Agora Signature Black Cotton Denim Tote Bag</h2>
+                            <h2>{product?.name}</h2>
                             <div>
                                 <button className="rating">
                                     <i className="bx bxs-star"></i>
@@ -115,17 +118,19 @@ export default function ProductDetail(){
                                     <i className="bx bxs-star"></i>
                                     <i className="bx bxs-star"></i>
                                     <i className="bx bxs-star"></i>
-                                    <span>5 Reviews</span>
+                                    <span>3 Reviews</span>
                                 </button>
-                                <p className="price">GH₵55.00</p>
+                                <p className="price">GH₵{product?.price.toFixed(2)} <s>GH₵{product?.oldPrice.toFixed(2)}</s></p>
                             </div>
                             <p className="description">
-                                The Art Agora Signature Black Cotton Denim Tote Bag is a stylish and eco-friendly accessory that combines functionality with a touch of art-inspired design. Each bag is manufactured from high-quality cotton denim and then dyed in batches, giving the thick textile of the bag a weathered texture. This tote bag is perfect for carrying your essentials while making a statement. Dyes are extra high quality and will not fade after multiple washes.
+                                {product?.description || "This is a placeholder description for the product. It will be replaced with actual product details."}
                             </p>
                             <div className="size">
                                 <label htmlFor="size">Size</label>
                                 <select name="size" id="size">
-                                    <option value="one-size">One Size</option>
+                                    {product?.sizes.map((size, i) => (
+                                        <option key={i} value={size}>{size}</option>
+                                    ))}
                                 </select>
                             </div>
                             <button className="add-to-cart">
@@ -136,18 +141,17 @@ export default function ProductDetail(){
                             </button>
                             <div className="extra-details">
                             <Dropdown title="Product Details">
+                               {product?.details.map((detail, i) => (
+                                    <li key={i}>{detail}</li>
+                               ))}
                                
-                                <li>Made in Ghana</li>
-                                <li>13oz Bull Denim</li>
-                                <li>100% Cotton</li>
                                
                             </Dropdown>
 
                             <Dropdown title="Size">
-                               
-                                <li>Opening: 15"</li>
-                                <li>Depth: 14 1/4"</li>
-                               
+                                {product?.dimensions.map((dimension, i) => (
+                                    <li key={i}>{dimension}</li>
+                                ))}
                             </Dropdown>
                             </div>
 
