@@ -9,5 +9,9 @@ export default defineConfig({
       '@styles': path.resolve(__dirname, './src/styles'),
     },
   },
+  server: {
+    host: '0.0.0.0',
+    port: 8000
+  }
   
 })

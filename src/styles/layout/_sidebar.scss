@@ -11,6 +11,7 @@ nav.sidebar{
     box-sizing: border-box;
     position: relative;
     transition: width .4s ease;
+    
     &.search-active{
         transition: .4s ease;
         width: 30%;
@@ -47,7 +48,10 @@ nav.sidebar{
                     transition: .4s ease;
                     color: $white;
                     svg{
-                        color: $white;
+                        path{
+                            color: $white;
+                            stroke: $white;
+                        }
                     }
                 }
                 span{
@@ -58,8 +62,8 @@ nav.sidebar{
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    svg{
-                        color: $font-color;
+                    svg path{
+                       transition: stroke .4s ease;
                     }
                     small{
                         position: absolute;
@@ -236,38 +240,54 @@ nav.sidebar{
         width: 100%;
         height: fit-content;
         padding: 0;
-       
+        
         
         .header{
-            
             flex-direction: row-reverse;
-            padding: .3rem;
+            padding: .3rem .5rem;
             align-items: center;
             .top-action{
-                
                 align-items: center;
                 line-height: 1rem;
-                gap: .7rem;
+                gap: 1.2rem;
+                
                 .favorite{
                     display: none;
                 }
                 a.search{
                     display: flex !important;
+                    span{
+                        color: white;
+                    }
                 }
+                span{
+                    small{
+                        color: white;
+                    }
+                    svg path{
+                        stroke: white;
+                    }
+                }
+
                 a.nav-trigger{
                     display: flex !important;
                     
                     span{
                         font-weight: 200;
                         font-size: calc($base-font-size * 2.3);
+                        color: white;
                     }
                 }
             } 
             .logo{
                 display: flex;
-                padding: .5rem;
+                width: fit-content;
+                padding: .5rem 1rem;
+                justify-content: flex-start;
+               
                 img{
-                    width: 50%;
+                    width: 7rem;
+                    
                 }
                 
                 
@@ -285,18 +305,20 @@ nav.sidebar{
             height: 100vh;
             background: $black;
             z-index: 223;
-            width: 0%;
+            width: 80%;
             box-sizing: border-box;
             padding: $padding-base $padding-base * 2.5;
-            right: -60%; //change back
+            right: -80%; //change back
             
             justify-content: flex-start;
-            transition: all .4s ease;
-            display: none;
+            transition:right .4s ease;
+            
             &.active{
+                transition: .4s ease;
                 right: 0;
-                width: 70%;
-                display: flex;
+                
+                
+            
                 
             }
             .close{
@@ -372,20 +394,23 @@ nav.sidebar{
         form{
             position: absolute;
             height: 100vh;
+           
+            width: 80%;
+            right: -80%;
             
-            width: 60%;
-            right: -60%;
-            display: none;
+            display:flex;
             top: 0;
             background-color: $bg-color;
             z-index: 223;
             align-items: flex-start;
             box-sizing: border-box;
-            transition: all .4s ease;
+            transition: right .4s ease;
             padding:$padding-base $padding-base * 3;
             &.active{
-                right: 0%;
-                display: flex !important;
+                left: unset;
+                height: 100vh;
+                right: 0% !important;
+                
             }
             input{
                 width: 100%;

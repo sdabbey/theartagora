@@ -364,7 +364,7 @@ export default function ProductDetail(){
                     {products
                     .filter((product) => product.collection === "The Art Agora Signature Collection")
                     .slice(0, 4).map((product) => (
-                        <a key={product.id} href={`products/${product.id}`} className="card">
+                        <a key={product.id} href={`/collections/shop/products/${product.id}`} className="card">
                             <div className="card-image">
                                 <img src={product.image} alt={product.name} />
                             </div>
