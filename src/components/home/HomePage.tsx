@@ -25,7 +25,7 @@ export default function Home() {
             {
                 path: '/Juzz.m4a',
                 displayName: 'TheAA - Jazz',
-                cover: '/hoodie.png',
+                cover: '/logo1.png',
                 artist: 'The Art Agora',
             },
             // Additional songs can be added here
