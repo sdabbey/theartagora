@@ -61,7 +61,7 @@ export default function Home() {
         }
         
         function togglePlay() {
-            
+            music.pause();
             if (isPlaying) {
                 pauseMusic();
             } else {
@@ -89,7 +89,7 @@ export default function Home() {
 
         async function attemptPlay() {
             loadMusic(songs[musicIndex]);
-            await music.play()
+            await togglePlay();
             
         }
 
