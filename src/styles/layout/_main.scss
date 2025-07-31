@@ -364,11 +364,15 @@
             }
             .action-btn{
                 @include button-style(none, $white);
-                width: fit-content;
-                text-wrap: nowrap;
-                background-color: transparent;
-                border: 2px solid $white;
-                padding:0 $padding-base * 2;
+                
+                
+                &{
+                    width: fit-content;
+                    text-wrap: nowrap;
+                    background-color: transparent;
+                    border: 2px solid $white;
+                    padding:0 $padding-base * 2;
+                }
                 &:hover{
                     background-color: transparent;
                 }
