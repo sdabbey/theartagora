@@ -23,9 +23,9 @@ export default function Home() {
 
         const songs = [
             {
-                path: '/assets/audio/Juzz.m4a',
+                path: '/Juzz.m4a',
                 displayName: 'TheAA - Jazz',
-                cover: '/assets/images/hoodie.png',
+                cover: '/hoodie.png',
                 artist: 'The Art Agora',
             },
             // Additional songs can be added here
