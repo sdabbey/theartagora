@@ -8,10 +8,6 @@ export default function Sidebar(){
         if (!isMobile()) return;
         document.getElementById("search-box")?.classList.add("active");
         document.querySelector(".sidebar")?.classList.add("search-active");
-
-
-        
-        
     }
 
     const closeSearch = () => {
@@ -53,7 +49,7 @@ export default function Sidebar(){
                         </span>
                     </a>
                 </div>
-                <a href="#" className="logo">
+                <a href="/" className="logo">
                     <img src={logo} alt="" />
                     
                 </a>
@@ -69,9 +65,15 @@ export default function Sidebar(){
                     <li><a href="#">Virtual Gallery</a></li>
                     <li><a href="#">Fine Art Prints</a></li>
                     <li><a href="#">Agora Fashion</a></li>
-                    <li><a href="#">Mission Statement</a></li>
-                    <li><a href="#">Shop</a></li>
-                    <li><a href="#">Foundation</a></li>
+                    <li><a href="/mission">Mission Statement</a></li>
+                    <li><a href="/collections/shop">Shop</a></li>
+                    
+                    <div className="mwy-weithredu">
+                        <li><a href="#" className="artist-community">Studio Circle</a></li>
+                        <li><a href="#" className="sign-up">Join the Movement</a></li>
+                        <li><a href="#" className="foundation">Foundation</a></li>
+                    </div>
+
                 </ul>
 
                 <ul className="social-links">

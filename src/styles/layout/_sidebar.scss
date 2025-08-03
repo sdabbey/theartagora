@@ -144,6 +144,23 @@ nav.sidebar{
                     color: $primary-color;
                 }
             }
+            .mwy-weithredu{
+                margin-top: 2rem;
+                display: flex;
+                flex-direction: column;
+                gap: .5rem;
+                li{
+                    &:nth-child(1) a{
+                        color: $secondary-color;
+                    }
+                    &:nth-child(2) a{
+                        color: $accent2-color;
+                    }
+                    &:nth-child(3) a{
+                        color: $accent-color;
+                    }
+                }
+            }
         }
         .social-links{
             display: none;
