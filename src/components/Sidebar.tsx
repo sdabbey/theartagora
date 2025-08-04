@@ -70,7 +70,7 @@ export default function Sidebar(){
                     
                     <div className="mwy-weithredu">
                         <li><a href="#" className="artist-community">Studio Circle</a></li>
-                        <li><a href="#" className="sign-up">Join the Movement</a></li>
+                        <li><a href="/join-the-movement" className="sign-up">Join the Movement</a></li>
                         <li><a href="#" className="foundation">Foundation</a></li>
                     </div>
 
