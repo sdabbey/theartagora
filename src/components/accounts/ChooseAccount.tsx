@@ -9,7 +9,7 @@ export default function ChooseAccount() {
   const modalType = new URLSearchParams(location.search).get('type');
   return (
     <div className="join-us-page">
-      <h1>Join The Art Agora</h1>
+      <h1>Join <br></br> The Art Agora</h1>
       <p>
         Are you here to share your art or explore the community? Choose how you want to get started.
       </p>

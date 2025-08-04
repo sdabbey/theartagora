@@ -16,8 +16,8 @@ export default function Home() {
         const artist = document.getElementById('music-artist');
         const prevBtn = document.getElementById('prev');
         const nextBtn = document.getElementById('next');
-        const playBtn = document.getElementById('play');
-
+        const playBtn = document.querySelector('.bx-play');
+        const pauseBtn = document.querySelector('.bx-pause');
         const music = new Audio();
         // music.autoplay = true;
 
@@ -33,6 +33,8 @@ export default function Home() {
         
         let musicIndex = 0;
         let isPlaying = false;
+        loadMusic(songs[musicIndex])
+        
 
         function loadMusic(song: typeof songs[0]): void {
             music.src = song.path;
@@ -44,32 +46,30 @@ export default function Home() {
         function playMusic() {
             isPlaying = true;
             loadMusic(songs[musicIndex]);
-            if (playBtn) {
-                playBtn.classList.replace('bx-play', 'bx-pause');
-                playBtn.setAttribute('title', 'Pause');
-            }
+            console.log('playMusic called');
+            
+            playBtn?.classList.add("remove")
+            playBtn?.classList.remove("show")
+            pauseBtn?.classList.remove("remove")
+            pauseBtn?.classList.add("show")
+            
             music.play();
         }
 
         function pauseMusic() {
+            console.log('pauseMusic called');
             isPlaying = false;
-            if (playBtn) {
-                playBtn.classList.replace('bx-pause', 'bx-play');
-                playBtn.setAttribute('title', 'Play');
-            }
+            
+            pauseBtn?.classList.add("remove")
+            pauseBtn?.classList.remove("show")
+            playBtn?.classList.remove("remove")
+            playBtn?.classList.add("show")
+
             music.pause();
-        }
-        
-        function togglePlay() {
-            music.pause();
-            if (isPlaying) {
-                pauseMusic();
-            } else {
-                playMusic();
-            }
         }
 
-        console.log(isPlaying)
+
+        
         function changeMusic(direction: number): void {
             musicIndex = (musicIndex + direction + songs.length) % songs.length;
             loadMusic(songs[musicIndex]);
@@ -77,7 +77,10 @@ export default function Home() {
         }
 
         if (playBtn) {
-            playBtn.addEventListener('click', togglePlay);
+            playBtn.addEventListener('click', playMusic);
+        }
+        if (pauseBtn) {
+            pauseBtn.addEventListener('click', pauseMusic);
         }
         if (prevBtn) {
             prevBtn.addEventListener('click', () => changeMusic(-1));
@@ -87,11 +90,9 @@ export default function Home() {
         }
         music.addEventListener('ended', () => changeMusic(1));
 
-        async function attemptPlay() {
-            loadMusic(songs[musicIndex]);
-            await togglePlay();
-            
-        }
+       
+         // Start playing the first song immediately
+       
 
         
         
@@ -110,18 +111,35 @@ export default function Home() {
             });
         }
 
+        
        
 
-        attemptPlay();
-
+        
         // Cleanup event listeners on unmount
         return () => {
-            if (playBtn) playBtn.removeEventListener('click', togglePlay);
+            if (playBtn) playBtn.removeEventListener('click', playMusic);
+            if (pauseBtn) pauseBtn.removeEventListener('click', pauseMusic);
             if (prevBtn) prevBtn.removeEventListener('click', () => changeMusic(-1));
             if (nextBtn) nextBtn.removeEventListener('click', () => changeMusic(1));
             music.removeEventListener('ended', () => changeMusic(1));
             if (popupCloser) popupCloser.removeEventListener('click', () => {});
             if (startButton) startButton.removeEventListener('click', () => {});
+        };
+    }, []);
+    useEffect(() => {
+        const playBtn = document.querySelector('.bx-play') as HTMLElement | null;
+
+        // Trigger play only after a user interaction
+        const handleUserInteraction = () => {
+            playBtn?.click();  // Simulates a real user click on the play button
+            window.removeEventListener('click', handleUserInteraction);
+        };
+
+        // Add event listener only once
+        window.addEventListener('click', handleUserInteraction);
+
+        return () => {
+            window.removeEventListener('click', handleUserInteraction);
         };
     }, []);
 
@@ -163,7 +181,8 @@ export default function Home() {
                 </div>
                 <div className="player-controls">
                     <i className="bx bxs-fast-forward back" title="Previous" id="prev"></i>
-                    <i className="bx bx-play" title="Play" id="play"></i>
+                    <i className="bx bx-play show" title="Play"></i>
+                    <i className="bx bx-pause remove" title="Pause"></i>
                     <i className="bx bxs-fast-forward forward" title="Next" id="next"></i>
                 </div>
             </div>

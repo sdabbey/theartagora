@@ -142,13 +142,18 @@ export default function ArtistSignup({ onClose }: ArtistSignupProps) {
                 required
               />
               <span>
-                I agree to The Art Agora’s <a href="#">Terms of Service</a> and acknowledge the <a href="#">Privacy Policy</a>.
+                By ticking this, you are agreeing to The Art Agora's{" "}
+            <a href="#">Terms of Service</a> and are acknowledging our{" "}
+            <a href="#">Privacy Notice</a> applies
               </span>
             </label>
 
             <button type="button" onClick={handleNext} className="next-btn">
               Next
             </button>
+            <a className="login-btn" href="#">
+            Already an artist? Log in
+            </a>
           </div>
         )}
 
