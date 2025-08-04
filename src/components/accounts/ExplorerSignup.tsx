@@ -74,8 +74,7 @@ export default function ExplorerSignup({ onClose }: ExplorerSignupProps) {
             <input
               name="username"
               type="text"
-              autoComplete="off"
-              placeholder="John Doe"
+              placeholder="e.g. John Doe"
               required
               onChange={handleChange}
               value={form.username}
@@ -88,7 +87,6 @@ export default function ExplorerSignup({ onClose }: ExplorerSignupProps) {
               <input
                 name="password"
                 type={showPassword ? "text" : "password"}
-                autoComplete="off"
                 placeholder="********"
                 required
                 onChange={handleChange}
