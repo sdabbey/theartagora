@@ -1911,5 +1911,156 @@
            
         }
     }
+
+    //Agora Fashion
+    .agora-fashion{
+        width: 100%;
+        
+        box-sizing: border-box;
+        padding: 2%;
+        background-color: #EAEBEB;
+        font-family: "Montserrat", sans-serif;
+        h1{
+            color: $black;
+            text-transform: uppercase;
+            font-size: $base-font-size * 1.69;
+        }
+        p{
+            color: $black;
+        }
+        span{
+            color: $primary-color;
+        }
+        .card-container{
+            width: 100%;
+            display: flex;
+            gap: $padding-base * 1.52;
+            box-sizing: border-box;
+            flex-wrap: wrap;
+            padding: 1rem 0;
+            .card{
+                width: calc(100% / 3.15);
+                height: 450px;
+                padding: .5rem;
+                box-sizing: border-box;
+                text-decoration: none;
+                transition: .4s ease;
+                
+                &:hover{
+                    box-shadow: 0px 0px 13px 3px rgba(0, 0, 0, 0.068);
+                    transition: .5s ease-in-out;
+                    .description p{
+                        text-decoration: underline;
+                        color: $tertiary-color;
+                    }
+                    .card-slider{
+                        overflow: hidden;
+                        
+                        img{
+                            transform: scale(1.1);
+                            transition:.4s ease-in-out;
+                            
+                           
+                        }
+                    }
+                }
+                .card-slider{
+                    position: relative;
+                    max-width: 100%;
+                    height: 80%;
+
+                   
+
+                    .slides{
+                        width: 100%;
+                        height: 100%;
+                        img{
+                            width: 100%;
+                            height: 100%;
+                            display: none;
+                            object-fit: cover;
+                            &:first-child{
+                                display: block;
+                            }
+
+                        }
+                    }
+                    .prev, .next {
+                        cursor: pointer;
+                        position: absolute;
+                        top: 50%;
+                        width: auto;
+                        padding: 14px;
+                        border: none;
+                        margin-top: -22px;
+                        color: $black;
+                        font-weight: bold;
+                        font-size: 18px;
+                        transition: 0.6s ease;
+                        border-radius: 0 3px 3px 0;
+                        background: #EAEBEB;
+                        user-select: none;
+                        &:hover{
+                            background-color: rgba(0,0,0,0.8);
+                        }
+                    }
+                    .next {
+                        right: 0;
+                        border-radius: 3px 0 0 3px;
+                    }
+                }
+                .description{
+                    width: 100%;
+                    height: 20%;
+                    box-sizing: border-box;
+                    font-family: "Montserrat", sans-serif;
+                    color: $black;
+                    padding: .7rem 0;
+                    
+                    p{
+                        text-transform: uppercase;
+                        text-decoration-color: $black;
+                        font-weight: bold;
+                        font-size: $base-font-size * .8;
+                    }
+                    
+                }
+            }
+        }
+
+        @media (max-width: $breakpoint-mobile) {
+            h1{
+                font-size: $base-font-size * 1.5;
+                padding: 1rem 0;
+                text-align: center;
+            }
+            p.headline{
+                
+                text-align: justify;
+            }
+            .card-container{
+                justify-content: center;
+                .card{
+                    width: 85%;
+                    height: 400px;
+                    
+                    .card-image{
+                        height: 70%;
+                    }
+                    .description{
+                        height: 30%;
+                        
+                        p{
+                            font-size: $base-font-size * .75;
+                            line-height: 1rem;
+                        }
+                        small{
+                            font-size: $base-font-size * .7;
+                        }
+                    }
+                }
+            }
+        }
+    }
    
 }
