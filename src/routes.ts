@@ -5,8 +5,8 @@ const Shop = lazy(() => import('./pages/shop/ShopPage'))
 const ProductDetail = lazy(() => import('./pages/shop/ProductDetailPage'))
 const Mission = lazy(() => import('./pages/mission/MissionPage'))
 const Movement = lazy(() => import('./pages/accounts/ChooseAccountPage'))
-const AgoraFashion = lazy(() => import('./pages/fashion/AgoraFashion'))
-
+const AgoraFashion = lazy(() => import('./pages/agora-fashion/AgoraFashion'))
+const CuratedWorks = lazy(() => import('./pages/curated-works/CuratedWorks'))
 
 
 const routes = [
@@ -16,6 +16,7 @@ const routes = [
     { path: 'mission/', component: Mission},
     { path: 'join-the-movement/', component: Movement},
     { path: 'agora-fashion/', component: AgoraFashion},
+    { path: 'curated-works/', component: CuratedWorks},
 ]
 
 export default routes;

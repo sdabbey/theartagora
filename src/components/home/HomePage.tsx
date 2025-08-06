@@ -132,7 +132,7 @@ export default function Home() {
         // Trigger play only after a user interaction
         const handleUserInteraction = () => {
             playBtn?.click();  // Simulates a real user click on the play button
-            window.removeEventListener('click', handleUserInteraction);
+            // window.removeEventListener('click', handleUserInteraction);
         };
 
         // Add event listener only once

@@ -2062,5 +2062,138 @@
             }
         }
     }
+
+    //Curated Works Page
+    .curated-works-page{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        .curated-work{
+            width: 100%;
+            height: 450px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+            
+            .text-content{
+                width: 100%;
+                height: 70%;
+                box-sizing: border-box;
+                padding: 0 $padding-base * 2;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: $base-font-size * 1.3;
+                background-color: #CC621D;
+                font-family: "Montserrat", sans-serif;
+            
+                h4{
+                    color: $white;
+                    font-weight: 600;
+                    text-transform: uppercase;
+                    font-size: $base-font-size * 1.38;
+                }
+                p{
+                    font-size: $base-font-size * 0.94;
+                    font-weight: 600;
+                    color: $white;;
+                    line-height: $base-font-size * 1.25;
+                    span{
+                        font-weight:800;
+                        font-style: normal;
+                    }
+                }
+                .action-btn{
+                    @include button-style(none, $white);
+                    
+                    
+                    &{
+                        width: fit-content;
+                        text-wrap: nowrap;
+                        background-color: transparent;
+                        border: 2px solid $white;
+                        padding:0 $padding-base * 2;
+                    }
+                    &:hover{
+                        background-color: black;
+                    }
+                    
+                }
+            }
+            .img{
+                width: 100%;
+                height: 650px;
+                img{
+                    width: 100%;
+                    object-fit: cover;
+                    height: 100%;
+                }
+            }
+
+            @media (min-width: $breakpoint-desktop) {
+                flex-direction: row;
+                &:nth-child(even){
+                    flex-direction: row-reverse;
+                }
+                &:first-child{
+                    .text-content{
+                        background: #F4B102;
+                    }
+                }
+                &:nth-child(2){
+                    .text-content{
+                        background: $accent2-color;
+                    }
+                }
+                &:nth-child(3){
+                    .text-content{
+                        background: #3C0D0C;
+                    }
+                }
+                &:nth-child(4){
+                    .text-content{
+                        background: #130202;
+                    }
+                }
+                &:nth-child(5){
+                    .text-content{
+                        background: #AB1111;
+                    }
+                }
+                &:nth-child(6){
+                    .text-content{
+                        background: #421451;
+                    }
+                }
+                &:nth-child(7){
+                    .text-content{
+                        background: #1F2862;
+                    }
+                }
+
+                &:nth-child(8){
+                    .text-content{
+                        background: #02C8F4;
+                    }
+                }
+                .text-content{
+                    padding: 0 $padding-base * 4.5;
+                    width: 50%;
+                    height: 100%;
+                    .action-btn{
+                        @include button-style(none, $white);
+                        &:hover{
+                            background: black;
+                        }
+                    }
+                    
+                }
+                .img{
+                    width: 50%;
+                }
+            }
+        }
+    }
    
 }
