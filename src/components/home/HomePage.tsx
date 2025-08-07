@@ -32,7 +32,7 @@ export default function Home() {
         ];
         
         let musicIndex = 0;
-        let isPlaying = false;
+        
         loadMusic(songs[musicIndex])
         
 
@@ -44,7 +44,7 @@ export default function Home() {
         }
 
         function playMusic() {
-            isPlaying = true;
+            
             loadMusic(songs[musicIndex]);
             console.log('playMusic called');
             
@@ -58,7 +58,7 @@ export default function Home() {
 
         function pauseMusic() {
             console.log('pauseMusic called');
-            isPlaying = false;
+            
             
             pauseBtn?.classList.add("remove")
             pauseBtn?.classList.remove("show")
