@@ -136,7 +136,7 @@ export default function Home() {
         };
 
         // Add event listener only once
-        window.addEventListener('click', handleUserInteraction);
+        // window.addEventListener('click', handleUserInteraction);
 
         return () => {
             window.removeEventListener('click', handleUserInteraction);

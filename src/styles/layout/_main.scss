@@ -2136,9 +2136,11 @@
                 }
                 p{
                     font-size: $base-font-size * 0.94;
-                    font-weight: 600;
+                    font-weight: 500;
                     color: $white;;
                     line-height: $base-font-size * 1.25;
+                    letter-spacing: .02cm;
+
                     span{
                         font-weight:800;
                         font-style: normal;
@@ -2192,7 +2194,8 @@
                 }
                 .img{
                     width: 50%;
-                    height: 650px;
+                    // height: 650px;
+                    height: 100%;
 
                 }
             }
