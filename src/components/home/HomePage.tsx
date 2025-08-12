@@ -251,7 +251,7 @@ export default function Home() {
                 <div className="text-content">
                     <h1>Mission Statement</h1>
                     <p>The Art Agora is a platform committed to showcasing the work of underrepresented artists and fashion designers, blending the worlds of art, fashion, and technology. Our mission is to provide a space where diverse artistic expressions can flourish and be made accessible to all.</p>
-                    <a href="mission_statement.html" className="action-btn">Read More</a>
+                    <a href="/mission" className="action-btn">Read More</a>
                 </div>
             </section>
 

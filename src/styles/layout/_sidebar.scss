@@ -11,7 +11,7 @@ nav.sidebar{
     box-sizing: border-box;
     position: relative;
     transition: width .4s ease;
-    
+    // overflow: hidden;
     &.search-active{
         transition: .4s ease;
         width: 30%;
@@ -326,14 +326,16 @@ nav.sidebar{
             box-sizing: border-box;
             padding: $padding-base $padding-base * 2.5;
             right: -80%; //change back
-            
+            display: none;
             justify-content: flex-start;
-            transition:right .4s ease;
-            
+            transition: display .4s ease;
+
             &.active{
+                display: flex;
                 transition: .4s ease;
                 right: 0;
-                
+                height: 100vh;
+                // width: 80%;
                 
             
                 
@@ -415,7 +417,7 @@ nav.sidebar{
             width: 80%;
             right: -80%;
             
-            display:flex;
+            display:none;
             top: 0;
             background-color: $bg-color;
             z-index: 223;
@@ -424,7 +426,9 @@ nav.sidebar{
             transition: right .4s ease;
             padding:$padding-base $padding-base * 3;
             &.active{
+                display: flex;
                 left: unset;
+                
                 height: 100vh;
                 right: 0% !important;
                 

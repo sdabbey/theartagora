@@ -7,7 +7,7 @@ const Mission = lazy(() => import('./pages/mission/MissionPage'))
 const Movement = lazy(() => import('./pages/accounts/ChooseAccountPage'))
 const AgoraFashion = lazy(() => import('./pages/agora-fashion/AgoraFashion'))
 const CuratedWorks = lazy(() => import('./pages/curated-works/CuratedWorks'))
-
+const VirtualGalleryPage = lazy(() => import('./pages/virtual-gallery/VirtualGallery'))
 
 const routes = [
     { path: '/', component: Home},
@@ -17,6 +17,7 @@ const routes = [
     { path: 'join-the-movement/', component: Movement},
     { path: 'agora-fashion/', component: AgoraFashion},
     { path: 'curated-works/', component: CuratedWorks},
+    { path: 'virtual-gallery/', component: VirtualGalleryPage}
 ]
 
 export default routes;
