@@ -11,7 +11,7 @@ const VirtualGalleryPage = lazy(() => import('./pages/virtual-gallery/VirtualGal
 
 const routes = [
     { path: '/', component: Home},
-    { path: 'collections/shop', component: Shop},
+    { path: 'collections/shop/', component: Shop},
     { path: 'collections/shop/products/:id', component: ProductDetail},
     { path: 'mission/', component: Mission},
     { path: 'join-the-movement/', component: Movement},

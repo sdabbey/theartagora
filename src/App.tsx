@@ -2,7 +2,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import routes from './routes';
 import Sidebar from './components/Sidebar';
 import Footer from './components/Footer'
-import { useEffect, type ReactNode } from 'react';
+import { useEffect, type ReactNode, Suspense } from 'react';
+import Preloader from './components/Preloader';
 
 function Layout({ children }: { children: ReactNode }) {
   useEffect(() => {
@@ -54,19 +55,24 @@ function App() {
 
   return (
     <Router>
-      <Routes>
-        {routes.map(({ path, component: Component}, index) => (
-          <Route
-            key={index}
-            path={path}
-            element={
-              <Layout>
-                <Component />
-              </Layout>
-            }
-          />
-        ))}
-      </Routes>
+      <Suspense
+        fallback={
+          <Preloader/>
+        }>
+        <Routes>
+          {routes.map(({ path, component: Component}, index) => (
+            <Route
+              key={index}
+              path={path}
+              element={
+                <Layout>
+                  <Component />
+                </Layout>
+              }
+            />
+          ))}
+        </Routes>
+      </Suspense>
     </Router>
   )
 }

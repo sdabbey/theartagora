@@ -124,24 +124,53 @@ nav.sidebar{
                     transition: color .2s ease;
                     letter-spacing: .03cm;
                 }
-                &:nth-child(1) a:hover{
-                    color: $secondary-color;
+                &:nth-child(1) a{
+                    &.active{
+                        color: $secondary-color;
+                    }
+                    &:hover{
+                        color: $secondary-color;
+                    }
                 }
-                &:nth-child(2) a:hover{
-                    color: $primary-color;
-                    
+                &:nth-child(2) a{
+                    &.active{
+                        color: $primary-color;
+                    }
+                    &:hover{
+                        color: $primary-color;
+                    }
                 }
-                &:nth-child(3) a:hover{
-                    color: $tertiary-color;
+                &:nth-child(3) a{
+                    &.active{
+                        color: $tertiary-color;
+                    }
+                    &:hover{
+                        color: $tertiary-color;
+                    }
                 }
-                &:nth-child(4) a:hover{
-                    color: $accent-color;
+                &:nth-child(4) a{
+                    &.active{
+                        color: $accent-color;
+                    }
+                    &:hover{
+                        color: $accent-color;
+                    }   
                 }
-                &:nth-child(5) a:hover{
-                    color: $accent2-color;
+                &:nth-child(5) a{
+                    &.active{
+                        color: $accent2-color;
+                    }
+                    &:hover{
+                        color: $accent2-color;
+                    }
                 }
-                &:nth-child(6) a:hover{
-                    color: $primary-color;
+                &:nth-child(6) a{
+                    &.active{
+                        color: $primary-color;
+                    }
+                    &:hover{
+                        color: $primary-color;
+                    }
                 }
             }
             .mwy-weithredu{
@@ -151,14 +180,24 @@ nav.sidebar{
                 gap: .5rem;
                 li{
                     &:nth-child(1) a{
-                        color: $secondary-color;
+                        &.active,
+                        &:hover{
+                            color: $secondary-color;
+                        }
                     }
                     &:nth-child(2) a{
-                        color: $accent2-color;
+                        &.active,
+                        &:hover{
+                            color: $accent2-color;
+                        }
                     }
                     &:nth-child(3) a{
-                        color: $accent-color;
+                        &.active,
+                        &:hover{
+                            color: $accent-color;
+                        }
                     }
+                    
                 }
             }
         }
@@ -218,7 +257,7 @@ nav.sidebar{
             padding: .2rem;
             border: none;
             
-            i.bx,span{
+            i.bx,svg,span{
                 color: $font-color;
                 font-size: $base-font-size * 1.7;
                 transition: color .4s ease;
@@ -346,13 +385,18 @@ nav.sidebar{
                 align-self: flex-end;
                 align-items: baseline;
                 padding: 0.5rem;
+                right: 0;
                 cursor: pointer;
+                
+                position: absolute;
                 span{
                     font-weight: bold;
                 }
                 
             }
             .nav-links{
+                margin-top: 15vh;
+                
                 padding: $padding-base * 0.5;
                 display: flex;
                 flex-direction: column;

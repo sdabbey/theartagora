@@ -6,7 +6,7 @@ export default function Shop() {
             <h1>Shop Our Apparels</h1>
             <div className="card-container">
                 {products.map((product) => (
-                    <a key={product.id} href={`products/${product.id}`} className="card">
+                    <a key={product.id} href={`shop/products/${product.id}`} className="card">
                         <div className="card-image">
                             <img src={product.image} alt={product.name} />
                         </div>
