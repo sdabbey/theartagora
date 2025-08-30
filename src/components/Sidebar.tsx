@@ -69,13 +69,13 @@ export default function Sidebar() {
                 <ul className="nav-links">
                     <li><a href="/curated-works">Curated Works</a></li>
                     <li><a href="/virtual-gallery">Virtual Gallery</a></li>
-                    <li><a href="/fine-art-prints">Fine Art Prints</a></li>
+                    {/* <li><a href="/fine-art-prints">Fine Art Prints</a></li> */}
                     <li><a href="/agora-fashion">Agora Fashion</a></li>
                     <li><a href="/mission">Mission Statement</a></li>
                     <li><a href="/collections/shop">Shop</a></li>
                     
                     <div className="mwy-weithredu">
-                        <li><a href="/studio-circle" className="artist-community">Studio Circle</a></li>
+                        {/* <li><a href="/studio-circle" className="artist-community">Studio Circle</a></li> */}
                         <li><a href="/join-the-movement" className="sign-up">Join the Movement</a></li>
                         <li><a href="/foundation" className="foundation">Foundation</a></li>
                     </div>
