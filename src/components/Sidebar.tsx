@@ -1,6 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import '@styles/main.scss';
 import logo from '../assets/images/logo1.png';
+import { getCartCount } from "../utils/cart";
 
 export default function Sidebar() {
 
@@ -33,6 +34,23 @@ export default function Sidebar() {
         });
     }, []);
 
+
+    //Cart Update Functionality
+    const [cartCount, setCartCount] =  useState(getCartCount());
+
+    useEffect(() => {
+        const updateCount = () => setCartCount(getCartCount());
+
+        // Initial Load
+        updateCount();
+
+        // Listen to storage changes
+        window.addEventListener("storage", updateCount);
+
+        return () => {
+            window.removeEventListener("storage", updateCount);
+        };
+    }, []);
     return (
         <nav className="sidebar">
             <div className="header">
@@ -42,12 +60,12 @@ export default function Sidebar() {
                             <svg xmlns="http://www.w3.org/2000/svg" height="42px" viewBox="0 -960 960 960" width="42px" fill="#ffffff"><path d="M779.38-153.85 528.92-404.31q-30 25.54-69 39.54t-78.38 14q-96.1 0-162.67-66.53-66.56-66.53-66.56-162.57 0-96.05 66.53-162.71 66.53-66.65 162.57-66.65 96.05 0 162.71 66.56Q610.77-676.1 610.77-580q0 41.69-14.77 80.69t-38.77 66.69l250.46 250.47-28.31 28.3ZM381.54-390.77q79.61 0 134.42-54.81 54.81-54.8 54.81-134.42 0-79.62-54.81-134.42-54.81-54.81-134.42-54.81-79.62 0-134.42 54.81-54.81 54.8-54.81 134.42 0 79.62 54.81 134.42 54.8 54.81 134.42 54.81Z"/></svg>
                         </span>
                     </a>
-                    <a href="#" className="action-btn">
+                    <a href="/cart" className="action-btn">
                         <span>
                             <svg className="svg symbol symbol--cart low-dpi" width="24" height="28" viewBox="0 0 24 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M7 7H4.85375C3.25513 7 1.93732 8.25356 1.85749 9.85019L1.15749 23.8502C1.07181 25.5637 2.43806 27 4.15375 27H19.8463C21.5619 27 22.9282 25.5637 22.8425 23.8502L22.1425 9.85019C22.0627 8.25356 20.7449 7 19.1463 7H17M7 7V5C7 2.79086 8.79086 1 11 1H13C15.2091 1 17 2.79086 17 5V7M7 7H17" stroke="#B0B0B1" strokeWidth="2"></path>
                             </svg>
-                            <small>0</small>
+                            <small>{cartCount}</small>
                         </span>
                     </a>
                     <a href="#" className="nav-trigger action-btn" id="nav-trigger">

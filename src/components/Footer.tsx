@@ -6,7 +6,7 @@ export default function Footer(){
             <div className="footer-content">
                 <div className="footer-logo">
                     <img src={logo} alt="Logo" />
-                    <p>&copy; 2024 The Art Agora. All rights reserved.</p>
+                    <p>&copy; 2025 The Art Agora. All rights reserved.</p>
                 </div>
                 <div className="footer-links">
                     <a href="#" className="active">The Process</a>

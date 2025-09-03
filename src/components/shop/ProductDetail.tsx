@@ -1,6 +1,9 @@
 import { useParams } from 'react-router-dom';
 import { products } from '../../data/products';
 import { useEffect, useRef, useState } from "react";
+import { useNavigate, useLocation } from 'react-router-dom';
+import ReviewForm from './ReviewForm';
+import { addToCart, incrementItem, decrementItem, getCart } from '../../utils/cart';
 
 const initialReviews = [
   {
@@ -38,10 +41,12 @@ export default function ProductDetail(){
     const trackRef = useRef<HTMLDivElement | null>(null);
     const imageRefs = useRef<Array<HTMLDivElement | null>>([]);
     const [activeIndex, setActiveIndex] = useState(0);
-
     const { id } = useParams();
     const product = products.find(p => p.id === Number(id));
     const images = [product?.image, product?.image, product?.image]; // Replace with your real image list
+
+    const [cartQuantity, setCartQuantity] = useState(0);
+    const [selectedSize, setSelectedSize] = useState(product?.sizes[0] || "");
 
     useEffect(() => {
         const options = {
@@ -73,6 +78,7 @@ export default function ProductDetail(){
         };
     }, []);
 
+    //Image Scrolling
     interface ScrollToImageOptions {
         behavior?: ScrollBehavior;
         block?: ScrollLogicalPosition;
@@ -86,6 +92,7 @@ export default function ProductDetail(){
         }
     };
 
+    //Dropdown
     interface DropdownProps {
         title: string;
         children: React.ReactNode;
@@ -176,6 +183,26 @@ export default function ProductDetail(){
 
     const { averageRating, starCounts, totalReviews } = calculateRatings(initialReviews);
 
+    const navigate = useNavigate();
+    const location = useLocation();
+    const modalType = new URLSearchParams(location.search).get('type');
+
+
+    //Cart Update Functionality
+    useEffect(() => {
+        const updateQuantity = () => {
+            if (!product) return;
+            const cart = getCart();
+            const item = cart.find(c => c.id === product.id && c.size === selectedSize);
+            setCartQuantity(item ? item.quantity : 0);
+        };
+
+        updateQuantity();
+        window.addEventListener("storage", updateQuantity);
+        return () => window.removeEventListener("storage", updateQuantity);
+    }, [product, selectedSize]);
+
+    if (!product) return <div>Product not found</div>;
     return (
         <div className="product-detail-page">
             <div className="product">
@@ -224,20 +251,59 @@ export default function ProductDetail(){
                             <p className="description">
                                 {product?.description || "This is a placeholder description for the product. It will be replaced with actual product details."}
                             </p>
+                           {/* Size selector */}
                             <div className="size">
                                 <label htmlFor="size">Size</label>
-                                <select name="size" id="size">
-                                    {product?.sizes.map((size, i) => (
+                                <select
+                                    id="size"
+                                    value={selectedSize}
+                                    onChange={(e) => setSelectedSize(e.target.value)}
+                                >
+                                    {product.sizes.map((size, i) => (
                                         <option key={i} value={size}>{size}</option>
                                     ))}
                                 </select>
                             </div>
-                            <button className="add-to-cart">
-                                Add to Cart
-                                <span className="material-symbols-outlined shopping-bag">
-                                    shopping_bag
-                                </span>
-                            </button>
+                            {cartQuantity === 0 ? (
+                                <button 
+                                className="add-to-cart"
+                                onClick={() => {
+                                    if (!product) return;
+                                    const size = (document.getElementById("size") as HTMLSelectElement)?.value;
+
+                                    addToCart({
+                                    id: product.id,
+                                    name: product.name,
+                                    price: product.price,
+                                    image: product.image,
+                                    size,
+                                    quantity: 1
+                                    });
+                                }}
+                                >
+                                    Add to Cart
+                                    <span className="material-symbols-outlined shopping-bag">
+                                        shopping_bag
+                                    </span>
+                                </button>
+                                ) : (
+                                    <>
+                                    <div className="cart-control">
+                                        <button onClick={() => decrementItem(product.id, selectedSize)}><i className="bx bx-minus"></i></button>
+                                        <span>{cartQuantity}</span>
+                                        <button onClick={() => incrementItem(product.id, selectedSize)}><i className="bx bx-plus"></i></button>
+                                    </div>
+                                    <button
+                                      className="checkout-btn"
+                                        onClick={() => (window.location.href = "/cart")}
+                                        >
+                                        Proceed to Cart
+                                    </button>
+                                    </>
+                                )
+                            }
+
+                            
                             <div className="extra-details">
                             <Dropdown title="Product Details">
                                {product?.details.map((detail, i) => (
@@ -299,7 +365,7 @@ export default function ProductDetail(){
                     </div>
 
                     <div className="review-action">
-                        <a href="#" className="review-btn">Write a Review</a>
+                        <a href="#" onClick={() => navigate('?type=review')} className="review-btn">Write a Review</a>
                     </div>
                 </div>
 
@@ -352,7 +418,16 @@ export default function ProductDetail(){
                         ))}
                     </div>
                 </div>
-                
+                {modalType === 'review' && (
+                <ReviewForm
+                    onClose={() => {
+                    const params = new URLSearchParams(location.search);
+                    params.delete('type'); // remove ?type=review
+                    navigate({ search: params.toString() }, { replace: true });
+                    }}
+                />
+                )}
+
             </div>
 
             <div className="similar-products">
