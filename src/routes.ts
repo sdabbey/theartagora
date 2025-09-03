@@ -9,6 +9,7 @@ const AgoraFashion = lazy(() => import('./pages/agora-fashion/AgoraFashion'))
 const CuratedWorks = lazy(() => import('./pages/curated-works/CuratedWorks'))
 const VirtualGalleryPage = lazy(() => import('./pages/virtual-gallery/VirtualGallery'))
 const Cart = lazy(() => import('./pages/cart/CartPage'))
+const Checkout = lazy(() => import('./pages/checkout/CheckoutPage'))
 
 const routes = [
     { path: '/', component: Home},
@@ -19,7 +20,8 @@ const routes = [
     { path: 'agora-fashion/', component: AgoraFashion},
     { path: 'curated-works/', component: CuratedWorks},
     { path: 'virtual-gallery/', component: VirtualGalleryPage},
-    { path: 'cart/', component: Cart}
+    { path: 'cart/', component: Cart},
+    { path: 'checkout/', component: Checkout},
 ]
 
 export default routes;

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getCart, removeFromCart, incrementItem, decrementItem } from "../../utils/cart";
 
-interface CartItem {
+export interface CartItem {
     id: number;
     name: string;
     price: number;
@@ -44,7 +44,6 @@ export default function Cart() {
                 <div className="img">
                   <img src={item.image} alt={item.name} />
                 </div>
-
                 <div className="cart-card-content">
                   <p className="title">
                     {item.name} {item.size && `(${item.size})`}
@@ -86,7 +85,7 @@ export default function Cart() {
                 </h1>
                 <small>Taxes and shipping calculated at checkout</small>
               </div>
-              <button className="check-out">Check Out</button>
+              <button className="check-out" onClick={() => window.location.href = '/checkout'}>Check Out</button>
             </div>
           </>
         )}
