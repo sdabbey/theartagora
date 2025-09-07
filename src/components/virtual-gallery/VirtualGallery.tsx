@@ -30,7 +30,7 @@ export default function VirtualGallery() {
       {/* Fullscreen button */}
       <button
         onClick={handleFullscreen}
-        className="fullscreen-button"
+        className="fullscreen-btn"
       >
         ⛶ Fullscreen
       </button>
