@@ -190,7 +190,7 @@ export default function Home() {
             <section className="landing_page">
                 <h2>Original <br/> works only</h2>
                 <p>The Art Agora is a startup featuring a virtual gallery showcasing fine art, digital art, and a shop with unique apparel. Discover creations from underrepresented artists and find exclusive designs to wear or display.</p>
-                <a href="shop.html" className="action-btn">Shop Now</a>
+                <a href="/collections/shop" className="action-btn">Shop Now</a>
             </section>
 
             <div className="marquee">
@@ -206,28 +206,28 @@ export default function Home() {
                     <img src={toteBags} alt="Apparel 1" />
                     <div className="content">
                         <h4>Tote Bags</h4>
-                        <a href="shop.html" className="action-btn">Shop Now</a>
+                        <a href="/collections/shop" className="action-btn">Shop Now</a>
                     </div>
                 </div>
                 <div className="apparel-card">
                     <img src={phoneCases} alt="Apparel 1" />
                     <div className="content">
                         <h4>Phone Cases</h4>
-                        <a href="shop.html" className="action-btn">Shop Now</a>
+                        <a href="/collections/shop" className="action-btn">Shop Now</a>
                     </div>
                 </div>
                 <div className="apparel-card">
                     <img src={tShirts} alt="Apparel 1" />
                     <div className="content">
                         <h4>T-shirts</h4>
-                        <a href="shop.html" className="action-btn">Shop Now</a>
+                        <a href="/collections/shop" className="action-btn">Shop Now</a>
                     </div>
                 </div>
                 <div className="apparel-card">
                     <img src={hoodies} alt="Apparel 1" />
                     <div className="content">
                         <h4>Hoodies</h4>
-                        <a href="shop.html" className="action-btn">Shop Now</a>
+                        <a href="/collections/shop" className="action-btn">Shop Now</a>
                     </div>
                 </div>
             </section>
