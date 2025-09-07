@@ -30,17 +30,7 @@ export default function VirtualGallery() {
       {/* Fullscreen button */}
       <button
         onClick={handleFullscreen}
-        style={{
-          position: "absolute",
-          top: "10px",
-          right: "10px",
-          padding: "8px 12px",
-          background: "black",
-          color: "white",
-          border: "none",
-          borderRadius: "6px",
-          cursor: "pointer",
-        }}
+        className="fullscreen-button"
       >
         ⛶ Fullscreen
       </button>
