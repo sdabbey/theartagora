@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
-import { products } from '../../data/products';
+import { fetchProducts } from "../../data/products";
+import type { Product } from "../../data/products";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useLocation } from 'react-router-dom';
 import ReviewForm from './ReviewForm';
@@ -42,11 +43,21 @@ export default function ProductDetail(){
     const imageRefs = useRef<Array<HTMLDivElement | null>>([]);
     const [activeIndex, setActiveIndex] = useState(0);
     const { id } = useParams();
+    const [products, setProducts] = useState<Product[]>([]);
+    useEffect(() => {
+        fetchProducts().then(setProducts);
+    }, []);
     const product = products.find(p => p.id === Number(id));
     const images = [product?.image, product?.image, product?.image]; // Replace with your real image list
-
+    
     const [cartQuantity, setCartQuantity] = useState(0);
     const [selectedSize, setSelectedSize] = useState(product?.sizes[0] || "");
+
+    useEffect(() => {
+        if (product && !selectedSize && product.sizes.length > 0) {
+            setSelectedSize(product.sizes[0]); // ✅ default
+        }
+    }, [product, selectedSize]);
 
     useEffect(() => {
         const options = {
@@ -193,6 +204,8 @@ export default function ProductDetail(){
         const updateQuantity = () => {
             if (!product) return;
             const cart = getCart();
+            console.log(cart)
+            console.log("Product ID:", product.id, "Selected Size:", selectedSize)
             const item = cart.find(c => c.id === product.id && c.size === selectedSize);
             setCartQuantity(item ? item.quantity : 0);
         };
@@ -200,8 +213,9 @@ export default function ProductDetail(){
         updateQuantity();
         window.addEventListener("storage", updateQuantity);
         return () => window.removeEventListener("storage", updateQuantity);
-    }, [product, selectedSize]);
+    }, [product, selectedSize, products]);
 
+    console.log(cartQuantity)
     if (!product) return <div>Product not found</div>;
     return (
         <div className="product-detail-page">

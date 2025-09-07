@@ -13,6 +13,7 @@ export interface CartItem {
 
 export default function Cart() {
   const [cart, setCart] = useState<CartItem[]>([]);
+  const [instructions, setInstructions] = useState("");
 
   // Load cart on mount + whenever "storage" changes
   useEffect(() => {
@@ -24,6 +25,12 @@ export default function Cart() {
   }, []);
 
   const totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+  const handleCheckout = () => {
+    // Save instructions so Checkout page can access it
+    localStorage.setItem("special_instructions", instructions);
+    window.location.href = "/checkout";
+  };
 
   return (
     <div className="cart-section">
@@ -75,6 +82,8 @@ export default function Cart() {
               <textarea
                 name="instructions"
                 placeholder="Special instructions for seller..."
+                value={instructions} // ✅ bind state
+                onChange={(e) => setInstructions(e.target.value)}
               />
             </div>
 
@@ -85,7 +94,7 @@ export default function Cart() {
                 </h1>
                 <small>Taxes and shipping calculated at checkout</small>
               </div>
-              <button className="check-out" onClick={() => window.location.href = '/checkout'}>Check Out</button>
+              <button className="check-out" onClick={handleCheckout}>Check Out</button>
             </div>
           </>
         )}

@@ -84,15 +84,90 @@ export default function Checkout() {
             formData.phoneNumber.trim()
         );
     };
-    const handlePayment = () => {
-        const payload = {
-            ...formData,
-            cart,
-            totalPrice,
-        };
-        console.log("Submitting checkout data:", payload);
-        // TODO: send payload to backend
-    };
+// Load Paystack script if not already loaded
+useEffect(() => {
+    if (!document.getElementById("paystack-script")) {
+        const script = document.createElement("script");
+        script.id = "paystack-script";
+        script.src = "https://js.paystack.co/v1/inline.js";
+        script.async = true;
+        document.body.appendChild(script);
+    }
+}, []);
+
+const handlePayment = () => {
+    // @ts-ignore
+    const paystackPop = window.PaystackPop;
+    if (!paystackPop) {
+        alert("Paystack script not loaded. Please try again.");
+        return;
+    }
+    let handler = paystackPop.setup({
+        key: 'pk_test_bd6a6eb65b4c2966f303176e3dc55b25a74799ac',
+        email: formData.email,
+        phone: formData.phoneNumber,
+        amount: totalPrice * 100,
+        currency: "GHS",
+        ref: '' + Math.floor((Math.random() * 1000000000) + 1),
+
+        onClose: function () {
+            alert('Payment window closed.');
+        },
+
+        callback: function (response: any) {
+            let reference = response.reference;
+            alert('Payment complete! Reference: ' + reference);
+
+            const items = cart.map((item) => ({
+                product_id: item.id,      // backend expects product id
+                size: item.size,       // backend expects size string
+                quantity: item.quantity,
+                price: item.price
+            }));
+            const instructions = localStorage.getItem("special_instructions") || "";
+
+            const payload = {
+                email: formData.email,
+                firstName: formData.firstName,
+                lastName: formData.lastName,
+                address: formData.address,
+                apartment: formData.apartment,
+                city: formData.city,
+                postalCode: formData.postalCode,
+                country: formData.country,
+                phoneNumber: formData.phoneNumber,
+                subscribe: formData.subscribe,
+                instructions,
+                totalPrice,
+                is_paid: true,
+                payment_reference: reference,
+                items, // ✅ correctly structured
+            };
+
+            console.log("Submitting checkout data:", payload);
+
+            fetch(`${import.meta.env.VITE_API_BASE_URL}/api/checkout/`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(payload),
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                    console.log("Order saved:", data);
+                    // If you use react-router, import and use navigate
+                    window.location.href = "/";
+                    localStorage.setItem("cart", JSON.stringify([]));
+                    setCart([]);
+                })
+                .catch((err) => console.error("Error saving order:", err));
+        },
+    });
+
+    handler.openIframe();
+};
+
 
     return (
         <div className="checkout-section">
@@ -114,6 +189,7 @@ export default function Checkout() {
                             />
                             <div>
                                 <input
+                                    id="subscribe"
                                     type="checkbox"
                                     name="subscribe"
                                     checked={formData.subscribe}

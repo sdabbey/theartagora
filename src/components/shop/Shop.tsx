@@ -1,6 +1,12 @@
-import { products } from "../../data/products";
+import { useEffect, useState } from "react";
+import { fetchProducts } from "../../data/products";
+import type { Product } from "../../data/products";
 
 export default function Shop() {
+    const [products, setProducts] = useState<Product[]>([]);
+    useEffect(() => {
+        fetchProducts().then(setProducts);
+    }, []);
     return (
         <div className="shop">
             <h1>Shop Our Apparels</h1>

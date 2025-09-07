@@ -14,7 +14,7 @@ const curatedWorks = [
         description: "Collection draws inspiration directly from the original artwork by Alex Agyei",
         details: "Marker, Pen, Acrylic, Mixed Media",
         imageUrl: eden,
-        link: "#"
+        collectionSlug: "eden-collection",
     },
     {
         id: 2,
@@ -22,7 +22,7 @@ const curatedWorks = [
         description: "Collection draws inspiration directly from the original artwork by Asante Lo",
         details: "Acrylic on canvas, multi media",
         imageUrl: tapestryOfDreams,
-        link: "#"
+        collectionSlug: "tapestry-of-dreams-collection",
     },
     {
         id: 3,
@@ -30,7 +30,7 @@ const curatedWorks = [
         description: "Collection draws inspiration directly from the original artwork by Khid Jay",
         details: "Acrylic on canvas",
         imageUrl: ladyInTheRain,
-        link: "#"
+        collectionSlug: "lady-in-the-rain-collection"
     },
     {
         id: 4,
@@ -38,7 +38,7 @@ const curatedWorks = [
         description: "Collection draws inspiration directly from the original artwork by Khid Jay",
         details: "Acrylic on canvas",
         imageUrl: devilsTarot,
-        link: "#"
+        collectionSlug: "devils-tarot-collection"
     },
     {
         id: 5,
@@ -46,7 +46,7 @@ const curatedWorks = [
         description: "Collection draws inspiration directly from the original artwork by Khid Jay",
         details: "Acrylic on canvas",
         imageUrl: itsAlwaysSunny,
-        link: "#"
+        collectionSlug: "its-always-sunny-collection"
     },
     {
         id: 6,
@@ -54,7 +54,7 @@ const curatedWorks = [
         description: "Collection draws inspiration directly from the original artwork by Yung Hydrus",
         details: "Acrylic on canvas",
         imageUrl: stan,
-        link: "#"
+        collectionSlug: "stan-collection"
     },
     {
         id: 7,
@@ -62,7 +62,7 @@ const curatedWorks = [
         description: "Collection draws inspiration directly from the original artwork by Asante Lo",
         details: "Acrylic on canvas",
         imageUrl: diamondInTheRough,
-        link: "#"
+        collectionSlug: "diamond-in-the-rough-collection"
     },
     {
         id: 8,
@@ -70,7 +70,7 @@ const curatedWorks = [
         description: "Collection draws inspiration directly from the original artwork by Khid Jay",
         details: "Acrylic on canvas",
         imageUrl: maniacalNightmares,
-        link: "#"
+        collectionSlug: "maniacal-nightmares-collection"
     }
 
 ]
@@ -87,7 +87,7 @@ export default function CuratedWorks() {
                         <h4>{work.title}</h4>
                         <p>The <span>"{work.title}" </span>{work.description}</p>
                         {/* <a href="#" className="action-btn">Shop Now</a>  */}
-                        <a target="_blank" href={work.link} className="action-btn">Shop Now</a>
+                        <a target="_blank" href={`/collections/shop/${work.collectionSlug}`} className="action-btn">Shop Now</a>
                     </div>
                 </section>
             ))}

@@ -10,11 +10,13 @@ const CuratedWorks = lazy(() => import('./pages/curated-works/CuratedWorks'))
 const VirtualGalleryPage = lazy(() => import('./pages/virtual-gallery/VirtualGallery'))
 const Cart = lazy(() => import('./pages/cart/CartPage'))
 const Checkout = lazy(() => import('./pages/checkout/CheckoutPage'))
+const ShopCollection = lazy(() => import('./pages/shop/[slug]'))
 
 const routes = [
     { path: '/', component: Home},
     { path: 'collections/shop/', component: Shop},
     { path: 'collections/shop/products/:id', component: ProductDetail},
+    { path: 'collections/shop/:slug', component: ShopCollection},
     { path: 'mission/', component: Mission},
     { path: 'join-the-movement/', component: Movement},
     { path: 'agora-fashion/', component: AgoraFashion},
