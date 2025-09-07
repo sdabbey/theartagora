@@ -2091,9 +2091,14 @@
                         font-size: $base-font-size * 1;
                         font-weight: 600;
                         transition: background .2s ease;
-                        &:hover{
+                        &:disabled {
+                            background: #74747480;   /* dark button */
+                            color: #000;
+                            transition: background .2s ease;
+                        }
+                        &:not(:disabled):hover{
                             transition: .2s ease;
-                            background: darken($color: $tertiary-color, $amount: 5%)
+                            background: rgb(168, 4, 26);
                         }
                     }
                 }
@@ -2185,6 +2190,62 @@
                                 font-weight: 500;
                                 padding: .5rem 0;
                             }
+                        }
+                    }
+                }
+                .discount-form{
+                    display: flex;
+                    gap: 1rem;
+                    input{
+                        padding: .7rem;
+                        border: 1px solid #74757480;
+                        border-radius: 3px;
+                        font-size: $base-font-size * .9;
+                        &::placeholder{
+                            font-weight: 500;
+                            color: #747574d0;
+
+                        }
+                    }
+                    button{
+                        padding: .5rem;
+                        border: 1px solid #74757480;
+                        border-radius: 3px;
+                        font-size: .9rem;
+                        color: #747474;
+                        font-weight: 600;
+                       
+                        /* Enabled state */
+                        &:not(:disabled) {
+                            background: $tertiary-color;   /* dark button */
+                            color: #fff;
+                            transition: background .2s ease;
+                            &:hover {
+                                transition: .2s ease;
+                                background: rgb(168, 4, 26); /* subtle hover */
+                            }
+                        }
+                    }
+                }
+                .amount-summary{
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1rem;
+                    .subtotal, .delivery, .total{
+                        display: flex;
+                        justify-content: space-between;
+                        font-size: .9rem;
+                        color: black;
+                        
+                        span{
+                            font-size: .9rem;
+                            font-weight: 500;
+                        }
+                    }
+                    .delivery{
+                        span{
+                            font-weight: 700;
+                            font-size: 1rem;
                         }
                     }
                 }
@@ -2543,6 +2604,14 @@
         justify-content: center;
         z-index: 1000;
         flex-direction: column;
+      
+        p{
+            width: 100%;
+            text-align: start;
+           
+            font-size: .9rem;
+            color: $white-accent;
+        }
         .explorer-signup-form {
             background: $bg-color;
             padding:1rem 2rem;
@@ -2652,7 +2721,7 @@
                 cursor: pointer;
                 transition: background .3s ease-in-out;
                 &:hover {
-                    background: $tertiary-color;
+                    background: rgb(168, 4, 26);
                     transition: .3s ease-in-out;
                 }
                 &:disabled {

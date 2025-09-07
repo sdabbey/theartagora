@@ -1,7 +1,7 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 
 import ArtistSignup from './ArtistSignup';
-import ExplorerSignup from './ExplorerSignup';
+import ExplorerSubscribe from './ExplorerSubscribe';
 
 export default function ChooseAccount() {
   const navigate = useNavigate();
@@ -31,7 +31,7 @@ export default function ChooseAccount() {
       </div>
 
       {modalType === 'artist' && <ArtistSignup onClose={() => navigate('/join-the-movement')} />}
-      {modalType === 'explorer' && <ExplorerSignup onClose={() => navigate('/join-the-movement')} />}
+      {modalType === 'explorer' && <ExplorerSubscribe onClose={() => navigate('/join-the-movement')} />}
     </div>
   );
 }
