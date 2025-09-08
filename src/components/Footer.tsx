@@ -70,9 +70,9 @@ export default function Footer(){
                 </div>
                 <div className="newsletter">
                     <h4>Newsletter</h4>
-                    <form action="#">
+                    <form action="#" onSubmit={handleSubmit}>
                         <input type="email" onChange={handleChange} placeholder="Enter your email" required />
-                        <button type="submit" onClick={handleSubmit}>
+                        <button type="submit" disabled={form.email.trim() === ""}>
                             <span className="material-symbols-outlined">
                                 trending_flat
                             </span>
