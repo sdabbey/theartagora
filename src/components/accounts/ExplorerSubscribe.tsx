@@ -31,15 +31,33 @@ export default function ExplorerSubscribe({ onClose }: ExplorerSubscribeProps) {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.agreeToTerms) {
       alert("You must agree to the terms to subscribe.");
       return;
     }
 
-    console.log("User Subscription Data:", form);
-    // Call your backend API here
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/subscribe/`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: form.email,
+          special_requests: form.specialRequests
+        }),
+      });
+
+      if (response.ok) {
+        alert("🎉 Subscription successful!");
+        onClose();
+      } else {
+        alert("❌ Something went wrong. Try again later.");
+      }
+    } catch (err) {
+      console.error("Subscription error:", err);
+      alert("⚠️ Network error. Try again later.");
+    }
   };
 
   const isFormValid =

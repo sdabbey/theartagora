@@ -1,3 +1,4 @@
+// ArtistSignup.tsx
 import React, { useState } from "react";
 
 interface ArtistSignupProps {
@@ -5,9 +6,8 @@ interface ArtistSignupProps {
 }
 
 interface ArtistFormData {
-  username: string;
+  username: string;        // alias
   email: string;
-  password: string;
   agreeToTerms: boolean;
   displayName: string;
   bio: string;
@@ -17,11 +17,9 @@ interface ArtistFormData {
 
 export default function ArtistSignup({ onClose }: ArtistSignupProps) {
   const [step, setStep] = useState(1);
-  const [showPassword, setShowPassword] = useState(false);
   const [form, setForm] = useState<ArtistFormData>({
     username: "",
     email: "",
-    password: "",
     agreeToTerms: false,
     displayName: "",
     bio: "",
@@ -40,44 +38,64 @@ export default function ArtistSignup({ onClose }: ArtistSignupProps) {
   };
 
   const handleNext = () => {
-    if (
-      form.username &&
-      form.email &&
-      form.password &&
-      form.agreeToTerms
-    ) {
+    if (form.username && form.email && form.agreeToTerms) {
       setStep(2);
     } else {
-      alert("Please fill all required fields and agree to terms.");
+      alert("Please fill alias, email and agree to terms.");
     }
   };
 
   const handleBack = () => setStep(1);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Artist Signup Data:", form);
-    // API call here
+
+    // Transform to backend payload
+    const payload = {
+      alias: form.username,
+      email: form.email,
+      display_name: form.displayName,
+      bio: form.bio,
+      portfolio_url: form.portfolioUrl,
+      preferred_medium: form.preferredMedium,
+      agree_to_terms: form.agreeToTerms,
+    };
+
+    try {
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/artists/onboarding/`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        console.error(err);
+        alert("Something went wrong. Please review your inputs.");
+        return;
+      }
+
+      alert("Thanks! Your onboarding info has been received. 🎨");
+      onClose();
+    } catch (error) {
+      console.error(error);
+      alert("Network error. Please try again.");
+    }
   };
 
   return (
     <div className="artist-signup-modal">
       <form onSubmit={handleSubmit} className="artist-signup-form" autoComplete="off">
-        <button
-          type="button"
-          className="close-btn"
-          onClick={onClose}
-          style={{ float: "right", marginBottom: "1rem" }}
-        >
+        <button type="button" className="close-btn" onClick={onClose} style={{ float: "right", marginBottom: "1rem" }}>
           ×
         </button>
 
-        <h2>{step === 1 ? "Create Your Account" : "Tell Us About Your Art"}</h2>
+        <h2>{step === 1 ? "Start Your Onboarding" : "Tell Us About Your Art"}</h2>
 
         {step === 1 && (
           <div className="fields">
             <div>
-              <label htmlFor="username">Username</label>
+              <label htmlFor="username">Artist Alias</label>
               <input
                 name="username"
                 type="text"
@@ -100,41 +118,9 @@ export default function ArtistSignup({ onClose }: ArtistSignupProps) {
               />
             </div>
 
-            <div>
-                <label htmlFor="password">Password</label>
-                <div style={{ position: "relative" }}>
-                <input
-                    name="password"
-                    type={showPassword ? "text" : "password"}
-                    autoComplete="off"
-                    placeholder="********"
-                    required
-                    onChange={handleChange}
-                    value={form.password}
-                    style={{ paddingRight: "4rem" }} // give room for toggle button
-                />
-                <button
-                    type="button"
-                    onClick={() => setShowPassword((prev) => !prev)}
-                    style={{
-                    position: "absolute",
-                    right: "0.7rem",
-                    top: "50%",
-                    transform: "translateY(-50%)",
-                    background: "none",
-                    border: "none",
-                    cursor: "pointer",
-                    fontSize: "1rem",
-                    color: "white"
-                    }}
-                >
-                    {showPassword ? <i className='bx  bx-eye-closed'  ></i>  : <i className='bx  bx-eye'  ></i> }
-                </button>
-                </div>
-            </div>
-
-            <label className="terms-checkbox">
+            <label className="terms-checkbox" htmlFor="agreeToTerms">
               <input
+                id="agreeToTerms"
                 name="agreeToTerms"
                 type="checkbox"
                 checked={form.agreeToTerms}
@@ -142,18 +128,15 @@ export default function ArtistSignup({ onClose }: ArtistSignupProps) {
                 required
               />
               <span>
-                By ticking this, you are agreeing to The Art Agora's{" "}
-            <a href="#">Terms of Service</a> and are acknowledging our{" "}
-            <a href="#">Privacy Notice</a> applies
+                By ticking this, you agree to The Art Agora’s{" "}
+                <a href="#">Terms of Service</a> and acknowledge our{" "}
+                <a href="#">Privacy Notice</a>.
               </span>
             </label>
 
             <button type="button" onClick={handleNext} className="next-btn">
               Next
             </button>
-            <a className="login-btn" href="#">
-            Already an artist? Log in
-            </a>
           </div>
         )}
 
@@ -209,7 +192,7 @@ export default function ArtistSignup({ onClose }: ArtistSignupProps) {
                 Back
               </button>
               <button type="submit" className="signup-btn">
-                Sign Up
+                Submit
               </button>
             </div>
           </div>
