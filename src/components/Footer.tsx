@@ -1,6 +1,45 @@
 import '@styles/main.scss';
 import logo from '../assets/images/logo-alt.png'
+import React, { useState } from "react";
 export default function Footer(){
+    const [form, setForm] = useState({
+        email: "",
+    });
+
+    const handleChange = (
+        e: React.ChangeEvent<HTMLInputElement>
+        ) => {
+        const { name, value } = e.target;
+        setForm((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
+    };
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+       
+    
+        try {
+          const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/subscribe/`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              email: form.email,
+              special_requests: ""
+            }),
+          });
+    
+          if (response.ok) {
+            alert("🎉 Subscription successful!");
+            
+          } else {
+            alert("❌ Something went wrong. Try again later.");
+          }
+        } catch (err) {
+          console.error("Subscription error:", err);
+          alert("⚠️ Network error. Try again later.");
+        }
+      };
     return (
         <footer className="footer">
             <div className="footer-content">
@@ -32,8 +71,8 @@ export default function Footer(){
                 <div className="newsletter">
                     <h4>Newsletter</h4>
                     <form action="#">
-                        <input type="email" placeholder="Enter your email" required />
-                        <button type="submit">
+                        <input type="email" onChange={handleChange} placeholder="Enter your email" required />
+                        <button type="submit" onClick={handleSubmit}>
                             <span className="material-symbols-outlined">
                                 trending_flat
                             </span>
